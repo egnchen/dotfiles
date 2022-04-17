@@ -16,7 +16,11 @@ if ! check_deps "sudo file wget"; then
 fi
 
 if ! command -v clash > /dev/null; then
-    if [ -z $1 ]; then
+    if uname -a | grep -i "manjaro" > /dev/null; then
+        # for manjaro, install directly from pacman
+        echo "Installing clash from pacman..."
+        sudo pacman -S clash
+    elif [ -z $1 ]; then
         echo "Downloading clash from github..."
         echo "If you have trouble downloading, please the file manually & feed directory to the script."
         wget -O clash.bin https://github.com/Dreamacro/clash/releases/download/v1.10.0/clash-linux-amd64-v3-v1.10.0.gz | gunzip > clash.bin
