@@ -31,10 +31,10 @@ fi
 
 case $distro in
     "ubuntu")
-        sh distros/ubuntu.sh
+        sh ~/.dotfiles/distros/ubuntu.sh
         ;;
     "manjaro")
-        sh distros/manjaro.sh
+        sh ~/.dotfiles/distros/manjaro.sh
         ;;
     *)
         echo "Unsupported distro ${distro}"

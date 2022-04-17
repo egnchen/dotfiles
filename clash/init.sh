@@ -23,7 +23,7 @@ if ! command -v clash > /dev/null; then
     elif [ -z $1 ]; then
         echo "Downloading clash from github..."
         echo "If you have trouble downloading, please download the file manually & feed directory to the script."
-        wget -O clash.bin https://github.com/Dreamacro/clash/releases/download/v1.10.0/clash-linux-amd64-v3-v1.10.0.gz | gunzip > clash.bin
+        wget -O clash.bin https://github.com/Dreamacro/clash/releases/download/v1.10.0/clash-linux-amd64-v3-v1.10.0.gz | gunzip > _clash.bin
         chmod +x clash.bin
         sudo mv clash.bin /usr/local/bin/clash
     else
