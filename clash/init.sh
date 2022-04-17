@@ -10,7 +10,7 @@ check_deps() {
     done
 }
 
-if ! check_deps "sudo file wget"; then
+if ! check_deps "sudo file wget gunzip"; then
     echo "Check your dependencies!"
     exit 1
 fi
@@ -22,9 +22,9 @@ if ! command -v clash > /dev/null; then
         sudo pacman -S clash
     elif [ -z $1 ]; then
         echo "Downloading clash from github..."
-        echo "If you have trouble downloading, please the file manually & feed directory to the script."
+        echo "If you have trouble downloading, please download the file manually & feed directory to the script."
         wget -O clash.bin https://github.com/Dreamacro/clash/releases/download/v1.10.0/clash-linux-amd64-v3-v1.10.0.gz | gunzip > clash.bin
-        chmod 755 clash.bin
+        chmod +x clash.bin
         sudo mv clash.bin /usr/local/bin/clash
     else
         if ! file $1 | grep "ELF" > /dev/null; then
