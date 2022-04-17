@@ -19,13 +19,13 @@ if ! command -v clash > /dev/null; then
     if uname -a | grep -i "manjaro" > /dev/null; then
         # for manjaro, install directly from pacman
         echo "Installing clash from pacman..."
-        sudo pacman -S clash
+        sudo pacman -Sy clash
     elif [ -z $1 ]; then
         echo "Downloading clash from github..."
         echo "If you have trouble downloading, please download the file manually & feed directory to the script."
         wget -O clash.bin https://github.com/Dreamacro/clash/releases/download/v1.10.0/clash-linux-amd64-v3-v1.10.0.gz | gunzip > _clash.bin
-        chmod +x clash.bin
-        sudo mv clash.bin /usr/local/bin/clash
+        chmod +x _clash.bin
+        sudo mv _clash.bin /usr/local/bin/clash
     else
         if ! file $1 | grep "ELF" > /dev/null; then
             read -p "Warning: input file $1 is not an ELF. Sure to continue(y/n)?" user_ok
