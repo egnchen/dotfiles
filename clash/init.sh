@@ -60,7 +60,7 @@ if ! command -v systemctl > /dev/null; then
     exit 1
 fi
 
-# configure systemd service
+# (optional) configure systemd service
 cat <<EOF | sudo tee /etc/systemd/system/clash.service
 [Unit]
 Description=Clash daemon, A rule-based proxy in Go.
