@@ -44,7 +44,7 @@ while getopts 'hput' opt; do
                 exit 1
             fi
         ?)
-            echo "Usage: init.sh -h <host> -p <port> -u <user>"
+            echo "Usage: init.sh -h <host> -p <port> -u <user> -t <tunnel_port>"
             ;;
     esac
 done
@@ -82,7 +82,8 @@ fi
 
 cat <<EOF | sudo tee $filename
 [Unit]
-Description=SSH tunnel service After=network.target
+Description=SSH tunnel service
+After=network.target
 
 [Service]
 ExecStart=/usr/bin/ssh -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -o "ExitOnForwardFailure yes" -NR ${tunnel_port}:localhost:22 ${remote_user}@${remote_host} Restart=always
