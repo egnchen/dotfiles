@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # dotfiles entrypoint
 
@@ -29,12 +29,15 @@ if [ $distro == "undetermined" ]; then
     read -p "Cannot determine distro. Enter your distro(ubuntu/manjaro):" distro
 fi
 
+dotfiles_dir=$(dirname ${BASH_SOURCE[0]})
+dotfiles_dir=$(realpath ${dotfiles_dir})
+
 case $distro in
     "ubuntu")
-        sh ~/.dotfiles/distros/ubuntu.sh
+        sh $dotfiles_dir/distros/ubuntu.sh
         ;;
     "manjaro")
-        sh ~/.dotfiles/distros/manjaro.sh
+        sh $dotfiles_dir/distros/manjaro.sh
         ;;
     *)
         echo "Unsupported distro ${distro}"

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # initialize clash
 
 check_deps() {
