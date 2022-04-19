@@ -92,7 +92,7 @@ if [ -e $filename ]; then
 fi
 
 
-cat <<EOF | sudo tee $filename
+sudo tee $filename <<EOF
 [Unit]
 Description=SSH tunnel service
 After=network.target
@@ -110,7 +110,7 @@ if [ ! $? ]; then
     exit 1
 fi
 
-# reload, restart, the routine
+# reload, enable, start, the routine
 sudo systemctl daemon-reload
 sudo systemctl enable $srvname
 sudo systemctl start $srvname
@@ -119,10 +119,10 @@ if sudo systemctl status $srvname; then
     echo "Successfully setup ssh tunnel to ${remote_host}."
     echo "Add this to your ssh config:"
     cat <<EOF
-Host        your_hostname
+Host        "your hostname config here"
 HostName    localhost
 Port        ${tunnel_port}
-ProxyCommand    ssh -p${remote_port} ${remote_user}@${remote_port}
+ProxyCommand    ssh -p${remote_port} ${remote_user}@${remote_host}
 EOF
 else
     echo "Systemd service failed. Please check the detail with:"

@@ -62,7 +62,7 @@ if ! command -v systemctl > /dev/null; then
 fi
 
 # (optional) configure systemd service
-cat <<EOF | sudo tee /etc/systemd/system/clash.service
+sudo tee /etc/systemd/system/clash.service <<EOF
 [Unit]
 Description=Clash daemon, A rule-based proxy in Go.
 After=network.target
@@ -78,6 +78,9 @@ EOF
 
 sudo systemctl daemon-reload
 sudo systemctl enable clash
-sudo systemctl restart clash
+sudo systemctl start clash
 
-echo "Done, clash service should be up and running"
+if sudo systemctl status clash; then
+    echo "Done, clash service should be up and running"
+    echo "To use clash properly, you also have to setup system proxy settings manually."
+fi
