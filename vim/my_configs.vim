@@ -2,6 +2,10 @@
 set mouse=a
 set nu
 
+" use space as leader
+nnoremap <space> <nop>
+nnoremap <C-space> <nop>
+map <space> <leader>
 " I want my ctrl+f, ctrl+b back
 let g:ctrlp_map='<c-p>'
 
@@ -12,3 +16,5 @@ set expandtab
 
 " colorscheme
 colorscheme dracula
+
+let g:ackprg = 'rg --vimgrep --type-not sql --smart-case'

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # setup vim
-if ! command -v vim; then
+if ! command -v vim > /dev/null; then
     echo "Vim not installed."
     exit 1
 fi
