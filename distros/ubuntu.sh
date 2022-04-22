@@ -22,4 +22,5 @@ sudo sed -i 's/archive.ubuntu.com/mirror.sjtu.edu.cn/g' /etc/apt/sources.list
 # apt update, install essential components
 sudo apt update
 sudo apt install -y wget git file
-sudo apt upgrade vim
+sudo apt upgrade -y vim
+sudo apt install -y neovim zsh
