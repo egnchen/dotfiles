@@ -6,6 +6,7 @@ set nu
 nnoremap <space> <nop>
 nnoremap <C-space> <nop>
 map <space> <leader>
+
 " I want my ctrl+f, ctrl+b back
 let g:ctrlp_map='<c-p>'
 
@@ -17,4 +18,5 @@ set expandtab
 " colorscheme
 colorscheme dracula
 
+" configure ack to use ripgrep
 let g:ackprg = 'rg --vimgrep --type-not sql --smart-case'
