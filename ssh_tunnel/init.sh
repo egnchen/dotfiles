@@ -70,8 +70,9 @@ if ! ssh-copy-id ${remote_user}@${remote_host}; then
     exit 1
 fi
 
-echo "Setting up ssh tunnel with ${remote_user}:${remote_host} port ${remote_port}"
+echo "Setting up ssh tunnel with ${remote_user}:${remote_host} -p${remote_port}"
 echo "Remote tunnel port is ${tunnel_port}"
+echo "Local user is $USER"
 
 # try to establish the tunnel
 # this would try to setup the remote port forwarding and open a terminal at the same time
@@ -99,6 +100,7 @@ After=network.target
 
 [Service]
 ExecStart=/usr/bin/ssh -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -o "ExitOnForwardFailure yes" -NR ${tunnel_port}:localhost:22 ${remote_user}@${remote_host} Restart=always
+User=$USER
 RestartSec=15s
 
 [Install]
@@ -119,10 +121,10 @@ if sudo systemctl status $srvname; then
     echo "Successfully setup ssh tunnel to ${remote_host}."
     echo "Add this to your ssh config:"
     cat <<EOF
-Host        "your hostname config here"
+Host        $HOST
 HostName    localhost
 Port        ${tunnel_port}
-ProxyCommand    ssh -p${remote_port} ${remote_user}@${remote_host}
+ProxyCommand    /usr/bin/ssh -p${remote_port} ${remote_user}@${remote_host} -W %h:%p
 EOF
 else
     echo "Systemd service failed. Please check the detail with:"
