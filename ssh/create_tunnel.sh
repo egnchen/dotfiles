@@ -3,6 +3,9 @@
 # setup a ssh-tunnel through remote forwarding
 # add it as a service using systemd
 
+echo "WARNING: this script is deprecated."
+echo "It's recommended to use zerotier to create a virtual LAN instead."
+
 check_deps() {
     for dep in $1; do
         if ! command -v ${dep} > /dev/null; then
@@ -62,7 +65,7 @@ if [ ! -e ~/.ssh/id_rsa ]; then
         mkdir ~/.ssh
     fi
     ssh-keygen -q -t rsa -N "" -f ~/.ssh/id_rsa
-fi 
+fi
 
 echo "copying ssh id. you might need to enter the password for remote host."
 if ! ssh-copy-id ${remote_user}@${remote_host}; then
@@ -89,7 +92,7 @@ if [ -e $filename ]; then
     read -p "${filename} exists. Overwrite?(y/n) " do_overwrite
     if [ $do_overwrite != 'y' ]; then
         exit 1
-    fi 
+    fi
 fi
 
 
