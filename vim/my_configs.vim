@@ -1,6 +1,7 @@
 " basics
 set mouse=a
 set nu
+set relativenumber
 
 " use space as leader
 nnoremap <space> <nop>
@@ -20,3 +21,4 @@ colorscheme dracula
 
 " configure ack to use ripgrep
 let g:ackprg = 'rg --vimgrep --type-not sql --smart-case'
+
