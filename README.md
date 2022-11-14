@@ -8,5 +8,4 @@ Use the following command line. To mitigate Github connection problem `ghproxy` 
 
 ```sh
 git clone https://ghproxy.com/https://github.com/eyeKill/dotfiles.git ~/.dotfiles
-sh ~/.dotfiles/go.sh
 ```
