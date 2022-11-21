@@ -2,6 +2,9 @@
 echo "Installing zerotier..."
 curl -s https://install.zerotier.com | sudo bash
 
+# start zerotier daemon
+sudo zerotier-one -d
+
 # join network
 DEFAULT_ZT_NETWORK_ID=b15644912e5ab646
 
