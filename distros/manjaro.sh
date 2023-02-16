@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # manjaro configuration
 echo "Setting up manjaro..."
 
@@ -7,5 +6,5 @@ echo "Setting up manjaro..."
 echo "Choosing the fastest mirror..."
 sudo pacman-mirrors -c China
 
-# install default dependencies
-sudo pacman -Sy --needed wget git vim
+# install all needed dependencies
+sudo pacman -Sy --needed wget git vim neovim
