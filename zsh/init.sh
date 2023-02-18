@@ -23,11 +23,10 @@ git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$H
 sed -i 's/^ZSH_THEME=.*$/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' ~/.zshrc
 
 # copy & enable configuration file
-dotfiles_zsh_path=$(dirname ${BASH_SOURCE[0]})
-dotfiles_zsh_path=$(realpath ${dotfiles_zsh_path})
+# get directory of this script file
+dotfiles_zsh_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cp $dotfiles_zsh_path/p10k.zsh ~/.p10k.zsh
-cat <<"EOF" >> ~/.zshrc
-
+cat << EOF >> ~/.zshrc
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 EOF
@@ -44,5 +43,4 @@ fi
 EOF
 mv ~/.dotfiles.zshrc ~/.zshrc
 
-# we're done
 echo "Successfully configured zsh"
