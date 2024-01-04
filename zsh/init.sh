@@ -24,16 +24,16 @@ sed -i 's/^ZSH_THEME=.*$/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' ~/.zshrc
 
 # copy & enable configuration file
 # get directory of this script file
-dotfiles_zsh_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-cp $dotfiles_zsh_path/p10k.zsh ~/.p10k.zsh
+filedir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+cp $filedir/p10k.zsh ~/.p10k.zsh
 cat << EOF >> ~/.zshrc
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 EOF
 
 # enable instant prompt
-rm -f ~/.dotfiles.zshrc
-cat - ~/.zshrc <<"EOF" > ~/.dotfiles.zshrc
+tempfile=$(mktemp)
+cat - ~/.zshrc <<"EOF" > ${tempfile}
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -41,6 +41,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 EOF
-mv ~/.dotfiles.zshrc ~/.zshrc
+mv ${tempfile} ~/.zshrc
 
 echo "Successfully configured zsh"

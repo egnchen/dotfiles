@@ -1,6 +1,6 @@
 # Dotfiles
 
-This repo contains my various dot files(configuration files) and setup scripts for different linux environments.
+This repo contains my various dot files(configuration files) and setup scripts for POSIX(Linux/MacOS) environments.
 
 ## Usage
 
